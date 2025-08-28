@@ -11,7 +11,7 @@ class UsersSeeder extends Seeder
     {
         $data = [
             [
-                'name'       => 'Admin Ain',
+                'name'       => 'Ain',
                 'email'      => 'Ainreach@gmail.com',
                 'password'   => password_hash('ayenreach12062004', PASSWORD_DEFAULT),
                 'role'       => 'admin',
@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
                 'updated_at' => Time::now(),
             ],
             [
-                'name'       => 'Instructor Yen',
+                'name'       => 'Yen',
                 'email'      => 'ayenreach@gmail.com',
                 'password'   => password_hash('2311600074', PASSWORD_DEFAULT),
                 'role'       => 'instructor',
