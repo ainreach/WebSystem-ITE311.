@@ -25,80 +25,60 @@
         <!-- ADMIN DASHBOARD -->
         <div class="row mb-4">
             <div class="col-12">
-                <h3><i class="fas fa-crown text-warning me-2"></i>Administrator Dashboard</h3>
-                <p class="text-muted">Manage users, courses, and monitor system activity.</p>
+                <h3 class="text-center"><i class="fas fa-shield-alt text-primary me-2"></i>Admin Panel</h3>
             </div>
         </div>
 
-        <!-- Admin Statistics -->
+        <!-- Simple Statistics -->
         <div class="row mb-4">
             <div class="col-md-4 mb-3">
-                <div class="card border-primary">
-                    <div class="card-body text-center">
-                        <i class="fas fa-users fa-3x text-primary mb-3"></i>
-                        <h4 class="text-primary"><?= $roleData['totalUsers'] ?? 0 ?></h4>
-                        <p class="mb-0">Total Users</p>
+                <div class="card shadow-sm">
+                    <div class="card-body text-center py-4">
+                        <i class="fas fa-users fa-2x text-primary mb-2"></i>
+                        <h3 class="mb-1"><?= $roleData['totalUsers'] ?? 0 ?></h3>
+                        <p class="text-muted mb-0">Users</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-3">
-                <div class="card border-success">
-                    <div class="card-body text-center">
-                        <i class="fas fa-book fa-3x text-success mb-3"></i>
-                        <h4 class="text-success"><?= $roleData['totalCourses'] ?? 0 ?></h4>
-                        <p class="mb-0">Total Courses</p>
+                <div class="card shadow-sm">
+                    <div class="card-body text-center py-4">
+                        <i class="fas fa-book fa-2x text-success mb-2"></i>
+                        <h3 class="mb-1"><?= $roleData['totalCourses'] ?? 0 ?></h3>
+                        <p class="text-muted mb-0">Courses</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-3">
-                <div class="card border-info">
-                    <div class="card-body text-center">
-                        <i class="fas fa-user-graduate fa-3x text-info mb-3"></i>
-                        <h4 class="text-info"><?= $roleData['totalEnrollments'] ?? 0 ?></h4>
-                        <p class="mb-0">Total Enrollments</p>
+                <div class="card shadow-sm">
+                    <div class="card-body text-center py-4">
+                        <i class="fas fa-graduation-cap fa-2x text-info mb-2"></i>
+                        <h3 class="mb-1"><?= $roleData['totalEnrollments'] ?? 0 ?></h3>
+                        <p class="text-muted mb-0">Enrollments</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Recent Users -->
+        <!-- Quick Management -->
         <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0"><i class="fas fa-clock me-2"></i>Recent Users</h5>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                        <h5>User Management</h5>
+                        <p class="text-muted">Manage system users</p>
+                        <a href="<?= site_url('admin/users') ?>" class="btn btn-primary">Manage Users</a>
                     </div>
-                    <div class="card-body">
-                        <?php if (!empty($roleData['recentUsers'])): ?>
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
-                                            <th>Joined</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($roleData['recentUsers'] as $recentUser): ?>
-                                            <tr>
-                                                <td><?= esc($recentUser['name']) ?></td>
-                                                <td><?= esc($recentUser['email']) ?></td>
-                                                <td>
-                                                    <span class="badge bg-<?= $recentUser['role'] === 'admin' ? 'danger' : ($recentUser['role'] === 'instructor' ? 'warning' : 'primary') ?>">
-                                                        <?= ucfirst($recentUser['role']) ?>
-                                                    </span>
-                                                </td>
-                                                <td><?= date('M j, Y', strtotime($recentUser['created_at'])) ?></td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <?php else: ?>
-                            <p class="text-muted">No recent users found.</p>
-                        <?php endif; ?>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-book fa-3x text-success mb-3"></i>
+                        <h5>Course Management</h5>
+                        <p class="text-muted">Manage all courses</p>
+                        <a href="<?= site_url('admin/courses') ?>" class="btn btn-success">Manage Courses</a>
                     </div>
                 </div>
             </div>
@@ -259,19 +239,14 @@
                 <div class="card-body">
                     <div class="row">
                         <?php if ($user['role'] === 'admin'): ?>
-                            <div class="col-md-3 mb-2">
+                            <div class="col-md-6 mb-2">
                                 <a href="<?= site_url('admin/users') ?>" class="btn btn-outline-primary w-100">
-                                    <i class="fas fa-users me-2"></i>Manage Users
+                                    <i class="fas fa-users me-2"></i>Users
                                 </a>
                             </div>
-                            <div class="col-md-3 mb-2">
+                            <div class="col-md-6 mb-2">
                                 <a href="<?= site_url('admin/courses') ?>" class="btn btn-outline-success w-100">
-                                    <i class="fas fa-book me-2"></i>Manage Courses
-                                </a>
-                            </div>
-                            <div class="col-md-3 mb-2">
-                                <a href="<?= site_url('admin/reports') ?>" class="btn btn-outline-info w-100">
-                                    <i class="fas fa-chart-bar me-2"></i>View Reports
+                                    <i class="fas fa-book me-2"></i>Courses
                                 </a>
                             </div>
                         <?php elseif ($user['role'] === 'instructor'): ?>
