@@ -62,6 +62,6 @@ class UsersSeeder extends Seeder
         echo "Login credentials:\n";
         echo "Admin: Ainreach@gmail.com / ayenreach12062004\n";
         echo "Instructor: ayenreach@gmail.com / 2311600074\n";
-        echo "Student: reach@gmail.com / 885270\n";
+        echo "Student: reach@gmail.com / 115270\n";
     }
 }
