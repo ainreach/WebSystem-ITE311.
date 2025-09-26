@@ -1,0 +1,380 @@
+ERROR - 2025-09-26 13:32:02 --> mysqli_sql_exception: Duplicate entry 'Ainreach@gmail.com' for key 'email' in C:\xampp\htdocs\ITE311-NABALE\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ITE311-NABALE\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `us...', 0)
+#1 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `us...')
+#2 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `us...')
+#3 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseBuilder.php(1841): CodeIgniter\Database\BaseConnection->query('INSERT INTO `us...', NULL, false)
+#4 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseBuilder.php(2230): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\xampp\htdocs\ITE311-NABALE\app\Database\Seeds\UsersSeeder.php(40): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\xampp\htdocs\ITE311-NABALE\system\Database\Seeder.php(149): App\Database\Seeds\UsersSeeder->run()
+#7 C:\xampp\htdocs\ITE311-NABALE\system\Commands\Database\Seed.php(79): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\xampp\htdocs\ITE311-NABALE\system\CLI\Commands.php(74): CodeIgniter\Commands\Database\Seed->run(Array)
+#9 C:\xampp\htdocs\ITE311-NABALE\system\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#10 C:\xampp\htdocs\ITE311-NABALE\system\Boot.php(388): CodeIgniter\CLI\Console->run()
+#11 C:\xampp\htdocs\ITE311-NABALE\system\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+#12 C:\xampp\htdocs\ITE311-NABALE\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+#13 {main}
+ERROR - 2025-09-26 13:55:32 --> mysqli_sql_exception: Unknown column 'teacher_id' in 'where clause' in C:\xampp\htdocs\ITE311-NABALE\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ITE311-NABALE\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `title`,...', 0)
+#1 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `title`,...')
+#2 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `title`,...')
+#3 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`,...', Array, false)
+#4 C:\xampp\htdocs\ITE311-NABALE\app\Controllers\Auth.php(265): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ITE311-NABALE\app\Controllers\Auth.php(218): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'teacher', '2')
+#6 C:\xampp\htdocs\ITE311-NABALE\system\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+#7 C:\xampp\htdocs\ITE311-NABALE\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#8 C:\xampp\htdocs\ITE311-NABALE\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ITE311-NABALE\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ITE311-NABALE\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ITE311-NABALE\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-09-26 13:55:32 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'teacher_id' in 'where clause'
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = :teacher_id:
+ORDER BY `created_at` DESC
+ LIMIT 5', [...], false)
+ 2 APPPATH\Controllers\Auth.php(265): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Auth.php(218): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'teacher', '2')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-26 13:55:32 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'teacher_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = :teacher_id:
+ORDER BY `created_at` DESC
+ LIMIT 5', [...], false)
+ 4 APPPATH\Controllers\Auth.php(265): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\Auth.php(218): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'teacher', '2')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-26 13:55:32 --> [Caused by] mysqli_sql_exception: Unknown column 'teacher_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = :teacher_id:
+ORDER BY `created_at` DESC
+ LIMIT 5', [...], false)
+ 5 APPPATH\Controllers\Auth.php(265): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Auth.php(218): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'teacher', '2')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-26 13:58:32 --> TypeError: CodeIgniter\CLI\InputOutput::input(): Return value must be of type string, bool returned
+[Method: CLI, Route: migrate:rollback]
+in SYSTEMPATH\CLI\InputOutput.php on line 46.
+ 1 SYSTEMPATH\CLI\CLI.php(260): CodeIgniter\CLI\InputOutput->input()
+ 2 SYSTEMPATH\Commands\Database\MigrateRollback.php(76): CodeIgniter\CLI\CLI::prompt('Are you sure you want to rollback?', [...])
+ 3 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Database\MigrateRollback->run([])
+ 4 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate:rollback', [])
+ 5 SYSTEMPATH\Boot.php(388): CodeIgniter\CLI\Console->run()
+ 6 SYSTEMPATH\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+ 7 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+ERROR - 2025-09-26 14:02:34 --> mysqli_sql_exception: Unknown column 'teacher_id' in 'where clause' in C:\xampp\htdocs\ITE311-NABALE\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ITE311-NABALE\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `title`,...', 0)
+#1 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `title`,...')
+#2 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `title`,...')
+#3 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`,...', Array, false)
+#4 C:\xampp\htdocs\ITE311-NABALE\app\Controllers\Auth.php(277): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ITE311-NABALE\app\Controllers\Auth.php(230): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'teacher', '2')
+#6 C:\xampp\htdocs\ITE311-NABALE\system\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+#7 C:\xampp\htdocs\ITE311-NABALE\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#8 C:\xampp\htdocs\ITE311-NABALE\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ITE311-NABALE\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ITE311-NABALE\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ITE311-NABALE\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-09-26 14:02:34 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'teacher_id' in 'where clause'
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = :teacher_id:
+ORDER BY `created_at` DESC
+ LIMIT 5', [...], false)
+ 2 APPPATH\Controllers\Auth.php(277): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Auth.php(230): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'teacher', '2')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-26 14:02:34 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'teacher_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = :teacher_id:
+ORDER BY `created_at` DESC
+ LIMIT 5', [...], false)
+ 4 APPPATH\Controllers\Auth.php(277): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\Auth.php(230): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'teacher', '2')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-26 14:02:34 --> [Caused by] mysqli_sql_exception: Unknown column 'teacher_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = :teacher_id:
+ORDER BY `created_at` DESC
+ LIMIT 5', [...], false)
+ 5 APPPATH\Controllers\Auth.php(277): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Auth.php(230): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'teacher', '2')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ERROR - 2025-09-26 14:02:35 --> mysqli_sql_exception: Unknown column 'teacher_id' in 'where clause' in C:\xampp\htdocs\ITE311-NABALE\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ITE311-NABALE\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `title`,...', 0)
+#1 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `title`,...')
+#2 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `title`,...')
+#3 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`,...', Array, false)
+#4 C:\xampp\htdocs\ITE311-NABALE\app\Controllers\Auth.php(277): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ITE311-NABALE\app\Controllers\Auth.php(230): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'teacher', '2')
+#6 C:\xampp\htdocs\ITE311-NABALE\system\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+#7 C:\xampp\htdocs\ITE311-NABALE\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#8 C:\xampp\htdocs\ITE311-NABALE\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ITE311-NABALE\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ITE311-NABALE\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ITE311-NABALE\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-09-26 14:02:35 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'teacher_id' in 'where clause'
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = :teacher_id:
+ORDER BY `created_at` DESC
+ LIMIT 5', [...], false)
+ 2 APPPATH\Controllers\Auth.php(277): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Auth.php(230): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'teacher', '2')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-26 14:02:35 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'teacher_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = :teacher_id:
+ORDER BY `created_at` DESC
+ LIMIT 5', [...], false)
+ 4 APPPATH\Controllers\Auth.php(277): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\Auth.php(230): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'teacher', '2')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-26 14:02:35 --> [Caused by] mysqli_sql_exception: Unknown column 'teacher_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `teacher_id` = :teacher_id:
+ORDER BY `created_at` DESC
+ LIMIT 5', [...], false)
+ 5 APPPATH\Controllers\Auth.php(277): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Auth.php(230): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'teacher', '2')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-26 14:18:42 --> TypeError: CodeIgniter\CLI\InputOutput::input(): Return value must be of type string, bool returned
+[Method: CLI, Route: migrate:refresh]
+in SYSTEMPATH\CLI\InputOutput.php on line 46.
+ 1 SYSTEMPATH\CLI\CLI.php(260): CodeIgniter\CLI\InputOutput->input()
+ 2 SYSTEMPATH\Commands\Database\MigrateRefresh.php(78): CodeIgniter\CLI\CLI::prompt('Are you sure you want to refresh?', [...])
+ 3 SYSTEMPATH\CLI\Commands.php(74): CodeIgniter\Commands\Database\MigrateRefresh->run([...])
+ 4 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate:refresh', [])
+ 5 SYSTEMPATH\Boot.php(388): CodeIgniter\CLI\Console->run()
+ 6 SYSTEMPATH\Boot.php(133): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+ 7 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+ERROR - 2025-09-26 14:20:42 --> mysqli_sql_exception: Unknown column 'instructor_id' in 'where clause' in C:\xampp\htdocs\ITE311-NABALE\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\ITE311-NABALE\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `title`,...', 0)
+#1 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `title`,...')
+#2 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `title`,...')
+#3 C:\xampp\htdocs\ITE311-NABALE\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`,...', Array, false)
+#4 C:\xampp\htdocs\ITE311-NABALE\app\Controllers\Auth.php(265): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ITE311-NABALE\app\Controllers\Auth.php(218): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'instructor', '2')
+#6 C:\xampp\htdocs\ITE311-NABALE\system\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+#7 C:\xampp\htdocs\ITE311-NABALE\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#8 C:\xampp\htdocs\ITE311-NABALE\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ITE311-NABALE\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ITE311-NABALE\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 C:\xampp\htdocs\ITE311-NABALE\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2025-09-26 14:20:42 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'instructor_id' in 'where clause'
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `instructor_id` = :instructor_id:
+ORDER BY `created_at` DESC
+ LIMIT 5', [...], false)
+ 2 APPPATH\Controllers\Auth.php(265): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Auth.php(218): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'instructor', '2')
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-26 14:20:42 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'instructor_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `instructor_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `instructor_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `instructor_id` = :instructor_id:
+ORDER BY `created_at` DESC
+ LIMIT 5', [...], false)
+ 4 APPPATH\Controllers\Auth.php(265): CodeIgniter\Database\BaseBuilder->get()
+ 5 APPPATH\Controllers\Auth.php(218): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'instructor', '2')
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-09-26 14:20:42 --> [Caused by] mysqli_sql_exception: Unknown column 'instructor_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `instructor_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `instructor_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `instructor_id` = \'2\'
+ORDER BY `created_at` DESC
+ LIMIT 5')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `title`, `description`, `created_at`
+FROM `courses`
+WHERE `instructor_id` = :instructor_id:
+ORDER BY `created_at` DESC
+ LIMIT 5', [...], false)
+ 5 APPPATH\Controllers\Auth.php(265): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\Auth.php(218): App\Controllers\Auth->getRoleSpecificData(Object(CodeIgniter\Database\MySQLi\Connection), 'instructor', '2')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Auth->dashboard()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
