@@ -7,11 +7,11 @@ class UpdateUsersTableRoles extends Migration
 {
     public function up()
     {
-        // Alter the role column to include instructor and student
+        // Alter the role column to include teacher and student
         $this->forge->modifyColumn('users', [
             'role' => [
                 'type'       => 'ENUM',
-                'constraint' => ['admin', 'instructor', 'student'],
+                'constraint' => ['admin', 'teacher', 'student'],
                 'default'    => 'student',
             ],
         ]);

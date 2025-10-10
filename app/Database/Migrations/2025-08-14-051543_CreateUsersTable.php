@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
                 'constraint' => '255',
             ],
             'role' => [
-                'type'       => 'ENUM("admin","instructor","student")',
+                'type'       => 'ENUM("admin","teacher","student")',
                 'default'    => 'student',
             ],
             'created_at' => [

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<?= csrf_hash() ?>">
     <title><?= isset($title) ? $title : 'ITE311-NABALE' ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -59,20 +60,20 @@
                                 </a>
                             </li>
                         
-                        <?php elseif ($userRole === 'instructor'): ?>
-                            <!-- Instructor Navigation -->
+                        <?php elseif ($userRole === 'teacher'): ?>
+                            <!-- Teacher Navigation -->
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= site_url('instructor/courses') ?>">
+                                <a class="nav-link" href="<?= site_url('teacher/courses') ?>">
                                     <i class="fas fa-chalkboard-teacher me-1"></i> My Courses
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= site_url('instructor/students') ?>">
+                                <a class="nav-link" href="<?= site_url('teacher/students') ?>">
                                     <i class="fas fa-user-graduate me-1"></i> My Students
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= site_url('instructor/lessons') ?>">
+                                <a class="nav-link" href="<?= site_url('teacher/lessons') ?>">
                                     <i class="fas fa-clipboard-list me-1"></i> Lessons
                                 </a>
                             </li>

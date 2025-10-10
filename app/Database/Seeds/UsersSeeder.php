@@ -22,14 +22,14 @@ class UsersSeeder extends Seeder
                 'name'       => 'Yen',
                 'email'      => 'ayenreach@gmail.com',
                 'password'   => password_hash('2311600074', PASSWORD_DEFAULT),
-                'role'       => 'instructor', // Changed from 'teacher' to 'instructor'
+                'role'       => 'teacher',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now(),
             ],
             [
                 'name'       => 'yen reach',
                 'email'      => 'reach@gmail.com',
-                'password'   => password_hash('885270', PASSWORD_DEFAULT),
+                'password'   => password_hash('115270', PASSWORD_DEFAULT),
                 'role'       => 'student',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now(),
@@ -47,10 +47,12 @@ class UsersSeeder extends Seeder
                 $this->db->table('users')->insert($userData);
                 echo "Created user: {$userData['name']} ({$userData['role']}) - {$userData['email']}\n";
             } else {
-                // Update existing user's role if it's different
+                // Update existing user's data
                 $this->db->table('users')
                     ->where('email', $userData['email'])
                     ->update([
+                        'name' => $userData['name'],
+                        'password' => $userData['password'],
                         'role' => $userData['role'],
                         'updated_at' => $userData['updated_at']
                     ]);
@@ -61,7 +63,7 @@ class UsersSeeder extends Seeder
         echo "\nYour users have been created successfully!\n";
         echo "Login credentials:\n";
         echo "Admin: Ainreach@gmail.com / ayenreach12062004\n";
-        echo "Instructor: ayenreach@gmail.com / 2311600074\n";
+        echo "Teacher: ayenreach@gmail.com / 2311600074\n";
         echo "Student: reach@gmail.com / 115270\n";
     }
 }

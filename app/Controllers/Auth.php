@@ -2,6 +2,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\EnrollmentModel;
+use App\Models\CourseModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Auth extends BaseController
@@ -138,7 +140,8 @@ class Auth extends BaseController
                     session()->regenerate();
 
                     $sessionData = [
-                        'userID'     => $user['id'],
+                        'user_id'    => $user['id'],
+                        'userID'     => $user['id'], // Keep both for compatibility
                         'name'       => $user['name'],
                         'email'      => $user['email'],
                         'role'       => $user['role'],
@@ -248,18 +251,25 @@ class Auth extends BaseController
                     ->getResultArray();
                 break;
 
-            case 'instructor':
-                // Simple instructor data - no database queries to avoid errors
+            case 'teacher':
+                // Simple teacher data - no database queries to avoid errors
                 $data['myCourses'] = 0;
                 $data['myStudents'] = 0;
                 $data['courseList'] = [];
                 break;
 
             case 'student':
-                // Simple student data - no database queries to avoid errors
-                $data['enrolledCourses'] = 0;
-                $data['completedLessons'] = 0;
-                $data['myCourses'] = [];
+                // Get enrollment and course data for students
+                $enrollmentModel = new EnrollmentModel();
+                $courseModel = new CourseModel();
+                
+                $enrolledCourses = $enrollmentModel->getUserEnrollments($userId);
+                $availableCourses = $enrollmentModel->getAvailableCourses($userId);
+                
+                $data['enrolledCourses'] = count($enrolledCourses);
+                $data['completedLessons'] = 0; // Placeholder for future implementation
+                $data['myCourses'] = $enrolledCourses;
+                $data['availableCourses'] = $availableCourses;
                 break;
 
             default:
