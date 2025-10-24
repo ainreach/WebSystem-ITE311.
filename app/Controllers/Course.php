@@ -114,12 +114,24 @@ class Course extends BaseController
      */
     public function index()
     {
-        $data = [
-            'courses' => $this->courseModel->getAllCourses(),
-            'title' => 'All Courses'
-        ];
-
-        return view('courses/index', $data);
+        $courses = $this->courseModel->getAllCourses();
+        $html = "<div class=\"container mt-4\"><h3>All Courses</h3>";
+        if (empty($courses)) {
+            $html .= "<div class=\"alert alert-info\">No courses found.</div>";
+        } else {
+            $html .= "<ul class=\"list-group\">";
+            foreach ($courses as $c) {
+                $title = htmlspecialchars($c['title'] ?? 'Untitled');
+                $id = (int) ($c['id'] ?? 0);
+                $html .= "<li class=\"list-group-item d-flex justify-content-between align-items-center\">";
+                $html .= "<span>{$title}</span>";
+                $html .= "<a class=\"btn btn-sm btn-primary\" href=\"" . site_url('course/' . $id) . "\">View</a>";
+                $html .= "</li>";
+            }
+            $html .= "</ul>";
+        }
+        $html .= "</div>";
+        return $html;
     }
 
     /**
@@ -130,17 +142,22 @@ class Course extends BaseController
     public function view($id)
     {
         $course = $this->courseModel->getCourseById($id);
-        
         if (!$course) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Course not found');
         }
-
-        $data = [
-            'course' => $course,
-            'title' => $course['title']
-        ];
-
-        return view('courses/view', $data);
+        $title = htmlspecialchars($course['title'] ?? 'Course');
+        $desc = nl2br(htmlspecialchars($course['description'] ?? ''));
+        $html = "<div class=\"container mt-4\">";
+        $html .= "<h3>{$title}</h3>";
+        if ($desc) {
+            $html .= "<p>{$desc}</p>";
+        }
+        $html .= "<div class=\"mt-3\">";
+        $html .= "<a class=\"btn btn-secondary btn-sm\" href=\"" . site_url('courses') . "\">Back</a> ";
+        $html .= "<a class=\"btn btn-outline-primary btn-sm\" href=\"" . site_url('course/' . (int)$id . '/materials') . "\">View Materials</a>";
+        $html .= "</div>";
+        $html .= "</div>";
+        return $html;
     }
 
     /**
