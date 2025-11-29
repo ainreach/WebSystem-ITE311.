@@ -21,10 +21,23 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Upload Course Material</h5>
-            <a href="<?php echo site_url('course/' . $course_id); ?>" class="btn btn-secondary btn-sm">Back to Course</a>
+            <?php 
+            $role = session()->get('role');
+            if ($role === 'admin') {
+                $backUrl = site_url('admin/courses');
+                $formUrl = site_url('admin/course/' . $course_id . '/upload');
+            } elseif ($role === 'teacher') {
+                $backUrl = site_url('teacher/courses');
+                $formUrl = site_url('teacher/course/' . $course_id . '/upload');
+            } else {
+                $backUrl = site_url('dashboard');
+                $formUrl = site_url('dashboard');
+            }
+            ?>
+            <a href="<?php echo $backUrl; ?>" class="btn btn-secondary btn-sm">Back to Course</a>
         </div>
         <div class="card-body">
-            <form action="<?php echo site_url('admin/course/' . $course_id . '/upload'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo $formUrl; ?>" method="post" enctype="multipart/form-data">
                 <?php echo csrf_field(); ?>
                 <div class="mb-3">
                     <label for="material" class="form-label">Select File (PDF, PPT, PPTX)</label>

@@ -18,6 +18,8 @@ class CourseModel extends Model
      */
     public function getAllCourses()
     {
+        $this->select('courses.*, users.name as instructor_name');
+        $this->join('users', 'users.id = courses.instructor_id', 'left');
         return $this->findAll();
     }
 

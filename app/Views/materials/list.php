@@ -13,12 +13,20 @@
         <h4 class="mb-0">Course Materials</h4>
         <div>
             <?php 
-            $backUrl = session()->get('role') === 'student' 
-                ? site_url('student/courses') 
-                : site_url('course/' . $course_id);
+            $role = session()->get('role');
+            if ($role === 'student') {
+                $backUrl = site_url('student/courses');
+                $backText = 'Back to My Courses';
+            } elseif (in_array($role, ['admin', 'teacher'])) {
+                $backUrl = site_url('admin/courses');
+                $backText = 'Back to Courses';
+            } else {
+                $backUrl = site_url('dashboard');
+                $backText = 'Back to Dashboard';
+            }
             ?>
             <a href="<?php echo $backUrl; ?>" class="btn btn-secondary btn-sm">
-                <?php echo session()->get('role') === 'student' ? 'Back to My Courses' : 'Back to Course'; ?>
+                <?php echo $backText; ?>
             </a>
             <?php if (in_array(session()->get('role'), ['admin','teacher'])): ?>
                 <a href="<?php echo site_url('admin/course/' . $course_id . '/upload'); ?>" class="btn btn-primary btn-sm ms-2">Upload Material</a>

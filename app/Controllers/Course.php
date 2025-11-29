@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\CourseModel;
 use App\Models\EnrollmentModel;
+use App\Models\NotificationModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Course extends BaseController
@@ -84,6 +85,14 @@ class Course extends BaseController
             $enrollmentId = $this->enrollmentModel->enrollUser($enrollmentData);
 
             if ($enrollmentId) {
+                // Create notification for the user
+                $notificationModel = new NotificationModel();
+                $notificationModel->createNotification(
+                    $userId,
+                    'enrollment',
+                    'You have successfully enrolled in "' . $course['title'] . '"'
+                );
+
                 return $this->response->setJSON([
                     'success' => true,
                     'message' => 'Successfully enrolled in the course!',
@@ -115,23 +124,7 @@ class Course extends BaseController
     public function index()
     {
         $courses = $this->courseModel->getAllCourses();
-        $html = "<div class=\"container mt-4\"><h3>All Courses</h3>";
-        if (empty($courses)) {
-            $html .= "<div class=\"alert alert-info\">No courses found.</div>";
-        } else {
-            $html .= "<ul class=\"list-group\">";
-            foreach ($courses as $c) {
-                $title = htmlspecialchars($c['title'] ?? 'Untitled');
-                $id = (int) ($c['id'] ?? 0);
-                $html .= "<li class=\"list-group-item d-flex justify-content-between align-items-center\">";
-                $html .= "<span>{$title}</span>";
-                $html .= "<a class=\"btn btn-sm btn-primary\" href=\"" . site_url('course/' . $id) . "\">View</a>";
-                $html .= "</li>";
-            }
-            $html .= "</ul>";
-        }
-        $html .= "</div>";
-        return $html;
+        return view('courses/index', ['courses' => $courses]);
     }
 
     /**
@@ -153,7 +146,14 @@ class Course extends BaseController
             $html .= "<p>{$desc}</p>";
         }
         $html .= "<div class=\"mt-3\">";
-        $html .= "<a class=\"btn btn-secondary btn-sm\" href=\"" . site_url('courses') . "\">Back</a> ";
+        // Determine back URL based on user role
+        $role = session()->get('role');
+        if (in_array($role, ['admin', 'teacher'])) {
+            $backUrl = site_url('admin/courses');
+        } else {
+            $backUrl = site_url('courses');
+        }
+        $html .= "<a class=\"btn btn-secondary btn-sm\" href=\"" . $backUrl . "\">Back</a> ";
         $html .= "<a class=\"btn btn-outline-primary btn-sm\" href=\"" . site_url('course/' . (int)$id . '/materials') . "\">View Materials</a>";
         $html .= "</div>";
         $html .= "</div>";
@@ -206,5 +206,32 @@ class Course extends BaseController
             'success' => true,
             'courses' => $enrolledCourses
         ]);
+    }
+
+    /**
+     * Search courses functionality
+     * @return ResponseInterface|string
+     */
+    public function search()
+    {
+        $searchTerm = $this->request->getGet('search_term') ?? $this->request->getPost('search_term');
+
+        if (!empty($searchTerm)) {
+            $this->courseModel->select('courses.*, users.name as instructor_name');
+            $this->courseModel->join('users', 'users.id = courses.instructor_id', 'left');
+            $this->courseModel->like('courses.title', $searchTerm);
+            $this->courseModel->orLike('courses.description', $searchTerm);
+        } else {
+            $this->courseModel->select('courses.*, users.name as instructor_name');
+            $this->courseModel->join('users', 'users.id = courses.instructor_id', 'left');
+        }
+
+        $courses = $this->courseModel->findAll();
+
+        if ($this->request->isAJAX()) {
+            return $this->response->setJSON($courses);
+        }
+
+        return view('courses/search_results', ['courses' => $courses, 'searchTerm' => $searchTerm]);
     }
 }

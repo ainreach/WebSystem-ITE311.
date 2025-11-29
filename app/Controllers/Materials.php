@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\MaterialModel;
 use App\Models\EnrollmentModel;
+use App\Models\NotificationModel;
+use App\Models\CourseModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Materials extends BaseController
@@ -73,8 +75,29 @@ class Materials extends BaseController
 
             $insertId = $this->materialModel->insertMaterial($data);
             if ($insertId) {
+                // Notify all enrolled students about new material
+                $courseModel = new CourseModel();
+                $course = $courseModel->getCourseById($course_id);
+                $enrolledStudents = $this->enrollmentModel->getEnrolledUsersByCourse($course_id);
+                
+                $notificationModel = new NotificationModel();
+                foreach ($enrolledStudents as $student) {
+                    $notificationModel->createNotification(
+                        $student['user_id'],
+                        'material',
+                        'New material "' . $originalName . '" uploaded for "' . $course['title'] . '"'
+                    );
+                }
+
                 session()->setFlashdata('success', 'Material uploaded successfully.');
-                return redirect()->to(site_url('course/' . $course_id));
+                
+                // Redirect based on user role
+                $role = session()->get('role');
+                if ($role === 'teacher') {
+                    return redirect()->to(site_url('teacher/courses'));
+                } else {
+                    return redirect()->to(site_url('course/' . $course_id));
+                }
             } else {
                 session()->setFlashdata('error', 'Failed to save material.');
                 return redirect()->back();

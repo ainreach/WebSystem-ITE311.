@@ -99,6 +99,28 @@
                     <?php endif; ?>
                 </ul>
                 
+                <!-- Notifications -->
+                <?php if (session()->get('isLoggedIn')): ?>
+                    <div class="dropdown me-3">
+                        <button class="btn btn-outline-light position-relative" type="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notification-badge" style="display: none;">
+                                0
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdown" style="width: 350px; max-height: 400px; overflow-y: auto;">
+                            <li><h6 class="dropdown-header d-flex justify-content-between align-items-center">
+                                Notifications
+                                <button class="btn btn-sm btn-link text-decoration-none" id="mark-all-read" style="font-size: 0.8rem;">Mark all as read</button>
+                            </h6></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <div id="notification-list">
+                                <li><span class="dropdown-item-text text-muted text-center">No new notifications</span></li>
+                            </div>
+                        </ul>
+                    </div>
+                <?php endif; ?>
+                
                 <!-- User Menu -->
                 <?php if (session()->get('isLoggedIn')): ?>
                     <div class="dropdown">

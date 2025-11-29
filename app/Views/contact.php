@@ -13,9 +13,9 @@
 </head>
 <body>
     <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
+        <a href="<?= site_url('/') ?>">Home</a>
+        <a href="<?= site_url('about') ?>">About</a>
+        <a href="<?= site_url('contact') ?>">Contact</a>
     </nav>
     <h1>Contact</h1>
     <p>This is the contact page.</p>
